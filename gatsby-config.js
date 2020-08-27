@@ -8,9 +8,6 @@ module.exports = {
     author: "@chrisbiscardi",
   },
   plugins: [
-    {
-      resolve: `gatsby-plugin-mdx`,
-    },
     "gatsby-plugin-react-helmet",
     {
       resolve: `gatsby-source-filesystem`,
@@ -26,30 +23,30 @@ module.exports = {
         path: `${__dirname}/src/pages`,
       },
     },
+
     "gatsby-transformer-sharp",
     "gatsby-plugin-sharp",
+    "gatsby-remark-images",
+    "gatsby-image",
+
     {
-      resolve: `gatsby-plugin-manifest`,
+      resolve: `gatsby-plugin-mdx`,
       options: {
-        name: "gatsby-default-mdx-basic",
-        short_name: "starter",
-        start_url: "/",
-        background_color: "#663399",
-        theme_color: "#663399",
-        display: "minimal-ui",
-        icon: "src/images/gatsby-icon.png", // This path is relative to the root of the site.
+        gatsbyRemarkPlugins: [
+          {
+            resolve: `gatsby-remark-images`,
+            options: {
+              maxWidth: 1200,
+            },
+          },
+        ],
       },
     },
-    // this (optional) plugin enables Progressive Web App + Offline functionality
-    // To learn more, visit: https://gatsby.app/offline
-    // 'gatsby-plugin-offline',
-    // Add a collection called "posts" that looks
-    // for files in content/posts/
     {
       resolve: "gatsby-source-filesystem",
       options: {
-        name: "posts",
-        path: `${__dirname}/features/`,
+        name: "documentation",
+        path: `${__dirname}/documentation/`,
       },
     },
   ],
